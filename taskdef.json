@@ -1,0 +1,23 @@
+{
+  "family": "capstone-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::354841642451:role/capstone-task-execution-role",
+  "containerDefinitions": [
+    {
+      "name": "capstone-app",
+      "image": "354841642451.dkr.ecr.us-east-1.amazonaws.com/devops-capstone-app:latest",
+      "portMappings": [{ "containerPort": 8080, "protocol": "tcp" }],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/capstone-app",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "capstone"
+        }
+      }
+    }
+  ]
+}
